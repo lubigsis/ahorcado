@@ -1,5 +1,5 @@
 //----------------------------------------------------------defino variables----------------------------
-let palabras = ['elefante', 'biblioteca', 'camioneta', 'acordeon', 'relampago'];
+let palabras = ['casa', 'nena', 'pino', 'perro', 'pie', 'gato'];
 let palabra = palabras[Math.floor(Math.random() * palabras.length)]; //redondeo y saco palabra al azar
 let palabraConGuiones = palabra.replace(/./g, "_ "); //para transformar en guines las palabras
 let contadorFallos = 0;
@@ -31,10 +31,19 @@ document.querySelector('#calcular').addEventListener('click', () => {
         if(fallaste){
             contadorFallos++;
             document.querySelector('#ahorcado').style.backgroundPosition = - (307 * contadorFallos) + 'px 0'; //como el slider
+            if(contadorFallos == 5){
+                document.querySelector('#perdedor').style.display = 'flex';
+            }
+        }else{
+            if(palabraConGuiones.indexOf('_') < 0){
+                document.querySelector('#ganador').style.display = 'flex';
+            }
         }
-
-
 
     document.querySelector('#output').innerHTML = palabraConGuiones;
     //alert(palabraConGuiones);
+    document.querySelector('#letra').value = '';
+    document.querySelector('#letra').focus();  //focus en el cuadro de texto a escribir
+
+
 });
